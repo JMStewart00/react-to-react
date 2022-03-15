@@ -4,6 +4,8 @@ import { getData } from '../utils/data';
 
 export default function Ingredients() {
   const ENDPOINT = 'Ingredients';
+  const START = 'wizard-world';
+
   const [ingredients, setIngredients] = useState([]);
 
 
@@ -12,7 +14,7 @@ export default function Ingredients() {
     if (data.length > 0) {
       setIngredients(data);
     } else {
-      getData(ENDPOINT)
+      getData(START, ENDPOINT)
         .then((data) => {
           setIngredients(data);
           setLocalStorage(ENDPOINT, data);

@@ -5,6 +5,7 @@ import { getData } from '../utils/data';
 
 export default function Wizards() {
   const ENDPOINT = 'Wizards';
+  const START = 'wizard-world';
   const [wizards, setWizards] = useState([]);
   
   useEffect(() => {
@@ -12,7 +13,7 @@ export default function Wizards() {
     if (data.length > 0) {
       setWizards(data);
     } else {
-      getData(ENDPOINT)
+      getData(START, ENDPOINT)
         .then((data) => {
           setWizards(data);
           setLocalStorage(ENDPOINT, data);

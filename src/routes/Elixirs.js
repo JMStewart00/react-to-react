@@ -4,6 +4,7 @@ import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 
 export default function Elixirs() {
   const ENDPOINT = 'Elixirs';
+  const START = 'wizard-world';
   const [elixir, setElixirs] = useState([]);
   
   useEffect(() => {
@@ -11,7 +12,7 @@ export default function Elixirs() {
     if (data.length > 0) {
       setElixirs(data);
     } else {
-      getData(ENDPOINT)
+      getData(START, ENDPOINT)
         .then((data) => {
           setElixirs(data);
           setLocalStorage(ENDPOINT, data);

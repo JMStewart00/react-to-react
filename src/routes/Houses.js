@@ -5,6 +5,8 @@ import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 
 export default function Houses() {
   const ENDPOINT = 'Houses';
+  const START = 'wizard-world';
+
   const [houses, setHouses] = useState([]);
   
   useEffect(() => {
@@ -12,7 +14,7 @@ export default function Houses() {
     if (data.length > 0) {
       setHouses(data);
     } else {
-      getData(ENDPOINT)
+      getData(START, ENDPOINT)
         .then((data) => {
           setHouses(data);
           setLocalStorage(ENDPOINT, data);
