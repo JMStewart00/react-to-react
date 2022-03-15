@@ -12,6 +12,7 @@ import Elixirs from './routes/Elixirs';
 import Houses from './routes/Houses';
 import Ingredients from './routes/Ingredients';
 import Wizards from './routes/Wizards';
+import Characters from './routes/Characters';
 
 const rootElement = document.getElementById('root'); // root element is in the index.html
 
@@ -22,6 +23,7 @@ render(
         <Route path="elixirs" element={<Elixirs />} />
         <Route path="houses" element={<Houses />} />
         <Route path="wizards" element={<Wizards />} />
+        <Route path="characters" element={<Characters />} />
         <Route path="ingredients" element={<Ingredients />} />
       </Route>
     </Routes>
