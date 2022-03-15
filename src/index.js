@@ -7,15 +7,16 @@ import {
 } from "react-router-dom";
 
 import './index.css';
-
 import App from './App';
+import Elixirs from './routes/Elixirs';
+import Houses from './routes/Houses';
 import Ingredients from './routes/Ingredients';
 import Wizards from './routes/Wizards';
 
-const rootElement = document.getElementById("app"); // root element is in the index.html
+const rootElement = document.getElementById('root'); // root element is in the index.html
 
 render(
-  <BrowserRouter>
+  <BrowserRouter> 
     <Routes>
       <Route path="/" element={<App />}>
         <Route path="elixirs" element={<Elixirs />} />
