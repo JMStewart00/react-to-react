@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 import { getData } from '../utils/data';
+import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 
 export default function Ingredients() {
   const ENDPOINT = 'Ingredients';
   const [ingredients, setIngredients] = useState([]);
+
+  useEffect(() => {
+    let data = getLocalStorage(ENDPOINT);
+    if (data.length > 0) {
+      setIngredients(data);
+    } else {
+      getData(ENDPOINT)
+        .then((data) => {
+          setIngredients(data);
+          setLocalStorage(ENDPOINT, data);
+        })
+    }
+  }, []);
 
   return (
     <main style={{ padding: "1rem 0" }}>
@@ -19,7 +32,7 @@ export default function Ingredients() {
               </tr>
             </thead>
             <tbody>
-              {ingredients.map((ingredient, idx) => <Ingredient key={ingredient.id} idx={idx} ingredient={ingredient} />)}
+              {ingredients.map((ingredient, idx) => <Ingredient key={ingredient.id} idx={idx} ingredient={ingredient}/>)}
             </tbody>
           </table>
         </div>

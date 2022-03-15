@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getData } from '../utils/data';
 import { getLocalStorage } from '../utils/localStorage';
 
 export default function Elixirs() {
   const ENDPOINT = 'Elixirs';
+  const [elixirs, setElixirs] = useState([]);
   
   useEffect(() => {
     let data = getLocalStorage(ENDPOINT);
@@ -13,7 +14,7 @@ export default function Elixirs() {
       getData(ENDPOINT)
         .then((data) => {
           setElixirs(data);
-          setLocalStorage(ENDPOINT, data);
+          getLocalStorage(ENDPOINT, data);
         })
     }
   }, []);
