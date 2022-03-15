@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function getData(endpoint) {
-  let response = await axios.get(`https://wizard-world-api.herokuapp.com/${endpoint}`);
+export async function getData(ENDPOINT) {
+  let response = await axios.get(`https://wizard-world-api.herokuapp.com/${ENDPOINT}`);
   return response.data;
 }

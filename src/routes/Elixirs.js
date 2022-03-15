@@ -4,25 +4,30 @@ import { getLocalStorage } from '../utils/localStorage';
 
 export default function Elixirs() {
   const ENDPOINT = 'Elixirs';
+  const [elixir, setElixirs] = useState([]);
   
   useEffect(() => {
-    let data = getLocalStorage(ENDPOINT);
+    let data = getLocalStorage({ENDPOINT});
     if (data.length > 0) {
       setElixirs(data);
     } else {
-      getData(ENDPOINT)
+      getData({ENDPOINT})
         .then((data) => {
           setElixirs(data);
-          setLocalStorage(ENDPOINT, data);
+          getLocalStorage(ENDPOINT, data);
         })
     }
   }, []);
 
+  let elixirList = Elixir.map((elixir) => {
+    <Elixir key={elixir.id} elixir={elixir} />;
+  });
+  
   return (
     <main style={{ padding: "1rem 0" }} className="container">
       <div className="row text-center justify-content-center gap-2">
         <h2>Elixirs</h2>
-        {elixirs.map((elixir) => <Elixir key={elixir.id} elixir={elixir} />)}
+        {elixirList}
       </div>
     </main>
   );
