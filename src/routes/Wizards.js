@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
+import { getData } from '../utils/data';
+
 
 export default function Wizards() {
   const ENDPOINT = 'Wizards';
-  const [wizards, setWizards] = useState();
+  const [wizards, setWizards] = useState([]);
   
   useEffect(() => {
-    let data = getLocalStorage(ENDPOINT, data);
+    let data = getLocalStorage({ENDPOINT});
     if (data.length > 0) {
       setWizards(data);
     } else {
@@ -32,7 +34,7 @@ export default function Wizards() {
                 </tr>
               </thead>
               <tbody>
-                {wizards.map((Wizard) =>  <Wizard key={Wizard.id} />)}
+                {wizards.map((wizard) =>  <Wizard key={wizard.id} wizard={wizard}/>)}
               </tbody>
             </table>
           </div>
@@ -41,12 +43,12 @@ export default function Wizards() {
   );
 }
 
-const Wizard = () => {
+const Wizard = ({wizard}) => {
   return (
     <tr>
-      <td>{Wizard.firstName} {Wizard.lastName}</td>
-      <td>{Wizard.firstName}</td>
-      <td>{Wizard.lastName}</td>
+      <td>{wizard.firstName} {wizard.lastName}</td>
+      <td>{wizard.firstName}</td>
+      <td>{wizard.lastName}</td>
     </tr>
   )
 }

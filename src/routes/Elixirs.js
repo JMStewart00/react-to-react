@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getData } from '../utils/data';
-import { getLocalStorage } from '../utils/localStorage';
+import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 
 export default function Elixirs() {
   const ENDPOINT = 'Elixirs';
@@ -11,16 +11,16 @@ export default function Elixirs() {
     if (data.length > 0) {
       setElixirs(data);
     } else {
-      getData({ENDPOINT})
+      getData(ENDPOINT)
         .then((data) => {
           setElixirs(data);
-          getLocalStorage(ENDPOINT, data);
+          setLocalStorage(ENDPOINT, data);
         })
     }
   }, []);
 
-  let elixirList = Elixir.map((elixir) => {
-    <Elixir key={elixir.id} elixir={elixir} />;
+  let elixirList = elixir.map((elixir) => {
+    return <Elixir key={elixir.id} elixir={elixir} />;
   });
   
   return (

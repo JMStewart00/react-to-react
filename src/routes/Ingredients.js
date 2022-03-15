@@ -12,10 +12,10 @@ export default function Ingredients() {
     if (data.length > 0) {
       setIngredients(data);
     } else {
-      getData({ENDPOINT})
-        .then(() => {
-          setHouses();
-          setLocalStorage();
+      getData(ENDPOINT)
+        .then((data) => {
+          setIngredients(data);
+          setLocalStorage(ENDPOINT, data);
         })
     }
   }, []);
