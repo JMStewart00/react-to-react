@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getData } from '../utils/data';
 import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
+// import "/workspace/react-to-react/index.css"
 
 export default function Characters() {
 const ENDPOINT = 'api/characters'
@@ -11,7 +12,7 @@ const [characters, setCharacter] = useState([]);
 useEffect(() => {
     let data = getLocalStorage({ENDPOINT});
     if (data.length > 0) {
-      setWizards(data);
+      setCharacter(data);
     } else {
       getData(START, ENDPOINT)
         .then((data) => {
@@ -52,7 +53,7 @@ return (
         <td>{character.house}</td>
         <td>{character.ancestry}</td>
         <td>{character.patronus}</td>
-        <td><img src={character.image}></img></td>
+        <td><img height='200px' width='200px' src={character.image}></img></td>
     </tr>
 )
 
