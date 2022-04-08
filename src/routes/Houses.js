@@ -4,7 +4,7 @@ import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 
 export default function Houses() {
   const ENDPOINT = 'Houses';
-  const [houses, setHouses] = useState(['house1']);
+  const [houses, setHouses] = useState([]);
   
   useEffect(() => {
     let data = getLocalStorage(ENDPOINT);
